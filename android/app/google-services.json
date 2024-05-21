@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "262089500052",
+    "project_id": "walktheisle-488ab",
+    "storage_bucket": "walktheisle-488ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262089500052:android:fc4465041b8d2c06e19b81",
+        "android_client_info": {
+          "package_name": "com.walkisle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEjiOWeijMgo_5eTcs9zOYEukn8cURmks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262089500052:android:34ae380569117b8ee19b81",
+        "android_client_info": {
+          "package_name": "com.walktheisles"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEjiOWeijMgo_5eTcs9zOYEukn8cURmks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
