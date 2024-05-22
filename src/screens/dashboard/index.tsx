@@ -107,7 +107,6 @@ const Home = () => {
             <View style={{ flexDirection: 'row', marginVertical: SIZES.padding * 2 }}>
                 <View style={{ flex: 1 }}>
                     <CustomText>Hello!</CustomText>
-                    <CustomText>ByProgrammers</CustomText>
                 </View>
 
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
