@@ -14,7 +14,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyA0cerOqLskL5lyYFpv6mbjyD9q5U4d5RI"];
   self.moduleName = @"Fasta Moni";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
