@@ -15,7 +15,6 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 //stackRoutes
 import HomeStack from './routes/dashboard';
 import GalleryStack from './routes/gallery';
-// import {MyTopTabs} from '../TopTabRoute/';
 import GiftingStack from './routes/gitfing';
 import CameraStack from './routes/camera';
 import SettingStack from './routes/settings';
@@ -29,16 +28,6 @@ import GiftIcon from '../../assets/icons/GiftIcon';
 import SettingIcon from '../../assets/icons/SettingsIcon';
 import CameraShotScreen from '../../screens/cameraShot';
 
-//styles
-// import {globalStyles} from '../../utils/globalstyles';
-// import {Colors} from '../../utils/theme';
-// import {home, loan, profile, support, support_} from '../../utils/constants';
-
-//icons
-// import HomeIcon from '../../assets/svg/HomeIcon';
-// import LoanIcon from '../../assets/svg/LoanIcon';
-// import SupportIcon from '../../assets/svg/SupportIcon';
-// import ProfileIcon from '../../assets/svg/ProfileIcon';
 
 const Tabs = createBottomTabNavigator();
 
@@ -119,7 +108,7 @@ const CustomTabBar = ({state, descriptors, navigation}: any) => {
                 )}
               </View>
             )}
-            {index === 1 && (
+            {/* {index === 4 && (
               <View style={styles.icon}>
                 {isFocused ? (
                   <TabContent
@@ -135,9 +124,9 @@ const CustomTabBar = ({state, descriptors, navigation}: any) => {
                   />
                 )}
               </View>
-            )}
+            )} */}
 
-            {index === 2 && (
+            {/* {index === 2 && (
               <View style={styles.icon}>
                 {isFocused ? (
                   <TabContent
@@ -153,8 +142,8 @@ const CustomTabBar = ({state, descriptors, navigation}: any) => {
                   />
                 )}
               </View>
-            )}
-            {index === 3 && (
+            )} */}
+            {/* {index === 3 && (
               <View style={styles.icon}>
                 {isFocused ? (
                   <TabContent
@@ -170,8 +159,8 @@ const CustomTabBar = ({state, descriptors, navigation}: any) => {
                   />
                 )}
               </View>
-            )}
-            {index === 4 && (
+            )} */}
+            {index === 1 && (
               <View style={styles.icon}>
                 {isFocused ? (
                   <TabContent
@@ -235,7 +224,7 @@ const BottomTabBottom = () => {
           headerShown: false,
         }}
       />
-      <Tabs.Screen
+      {/* <Tabs.Screen
         name={'support_'}
         component={GalleryStack}
         options={{
@@ -263,7 +252,7 @@ const BottomTabBottom = () => {
           headerShown: false,
           tabBarHideOnKeyboard: true,
         }}
-      />
+      /> */}
       <Tabs.Screen
         name={'profile_'}
         component={SettingStack}

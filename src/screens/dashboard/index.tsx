@@ -1,71 +1,318 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import React, {useState} from 'react';
-import Countdown from '../../components/CountdownComponent';
-import MeetCouple from './_component/MeetCouple';
-import Custombutton from '../../components/CustomButton';
-import NavButtons from './_component/NavButtons';
-import {data} from './_component/AddressTicketData';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import Address from './_component/Address';
-import Ticket from './_component/Ticket';
-import { Colors } from '../../utils/themes';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import CustomText from '../../components/CustomText';
+import React from "react";
+import {
+    SafeAreaView,
+    View,
+    Text,
+    Image,
+    FlatList,
+    TouchableOpacity
+} from "react-native"
+import { COLORS, SIZES, FONTS, icons, images } from "../../constants"
+import CustomText from "../../components/CustomText";
+import { Colors } from "../../utils/themes";
 
-const DashboardScreen = () => {
-  const [selectedOption , setSelectedOption] = useState<any>(1);
+const Home = () => {
 
-  const handleSelectView = (item: any) => {
-    setSelectedOption(item.id)
-  }
-  const HandleView = () => {
+    const featuresData = [
+        {
+            id: 1,
+            icon: icons.reload,
+            color: COLORS.purple,
+            backgroundColor: COLORS.lightpurple,
+            description: "Top Up"
+        },
+        {
+            id: 2,
+            icon: icons.send,
+            color: COLORS.yellow,
+            backgroundColor: COLORS.lightyellow,
+            description: "Transfer"
+        },
+        {
+            id: 3,
+            icon: icons.internet,
+            color: COLORS.primary,
+            backgroundColor: COLORS.lightGreen,
+            description: "Internet"
+        },
+        {
+            id: 4,
+            icon: icons.wallet,
+            color: COLORS.red,
+            backgroundColor: COLORS.lightRed,
+            description: "Wallet"
+        },
+        {
+            id: 5,
+            icon: icons.bill,
+            color: COLORS.yellow,
+            backgroundColor: COLORS.lightyellow,
+            description: "Bill"
+        },
+        {
+            id: 6,
+            icon: icons.game,
+            color: COLORS.primary,
+            backgroundColor: COLORS.lightGreen,
+            description: "Games"
+        },
+        {
+            id: 7,
+            icon: icons.phone,
+            color: COLORS.red,
+            backgroundColor: COLORS.lightRed,
+            description: "Mobile Prepaid"
+        },
+        {
+            id: 8,
+            icon: icons.more,
+            color: COLORS.purple,
+            backgroundColor: COLORS.lightpurple,
+            description: "More"
+        },
+    ]
+
+    const specialPromoData = [
+        {
+            id: 1,
+            img: images.promoBanner,
+            title: "Send Money",
+            description: "Send money to anyone and everyone"
+        },
+        {
+            id: 2,
+            img: images.promoBanner,
+            title: "Receive Money",
+            description: "Receive money seamless from any part of the world"
+        },
+        {
+            id: 3,
+            img: images.promoBanner,
+            title: "Transaction History",
+            description: "See the cash in flow and out flow"
+        },
+        {
+            id: 4,
+            img: images.promoBanner,
+            title: "Request Payment",
+            description: "You can request payment via a payment link you generate on the app"
+        },
+    ]
+
+    const [features, setFeatures] = React.useState(featuresData)
+    const [specialPromos, setSpecialPromos] = React.useState(specialPromoData)
+
+    function renderHeader() {
+        return (
+            <View style={{ flexDirection: 'row', marginVertical: SIZES.padding * 2 }}>
+                <View style={{ flex: 1 }}>
+                    <CustomText>Hello!</CustomText>
+                    <CustomText>ByProgrammers</CustomText>
+                </View>
+
+                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <TouchableOpacity
+                        style={{
+                            height: 40,
+                            width: 40,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor: COLORS.lightGray
+                        }}
+                    >
+                        <Image
+                            source={icons.bell}
+                            style={{
+                                width: 20,
+                                height: 20,
+                                tintColor: COLORS.secondary
+                            }}
+                        />
+                        <View
+                            style={{
+                                position: 'absolute',
+                                top: -5,
+                                right: -5,
+                                height: 10,
+                                width: 10,
+                                backgroundColor: COLORS.red,
+                                borderRadius: 5
+                            }}
+                        >
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+        )
+    }
+
+    // function renderBanner() {
+    //     return (
+    //         <View
+    //             style={{
+    //                 height: 120,
+    //                 borderRadius: 20,
+    //             }}
+    //         >
+    //             <Image
+    //                 source={images.banner}
+    //                 resizeMode="cover"
+    //                 style={{
+    //                     width: "100%",
+    //                     height: "100%",
+    //                     borderRadius: 20
+    //                 }}
+    //             />
+    //         </View>
+    //     )
+    // }
+
+    function renderFeatures() {
+
+        const Header = () => (
+            <View style={{ marginBottom: SIZES.padding * 2 }}>
+                <Text style={{ ...FONTS.h3 }}>Features</Text>
+            </View>
+        )
+
+        const renderItem = ({ item }: any) => (
+            <TouchableOpacity
+                style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center' }}
+                onPress={() => console.log(item.description)}
+            >
+                <View
+                    style={{
+                        height: 50,
+                        width: 50,
+                        marginBottom: 5,
+                        borderRadius: 20,
+                        backgroundColor: item.backgroundColor,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}
+                >
+                    <Image
+                        source={item.icon}
+                        resizeMode="contain"
+                        style={{
+                            height: 20,
+                            width: 20,
+                            tintColor: item.color
+                        }}
+                    />
+                </View>
+                <Text style={{ textAlign: 'center', flexWrap: 'wrap', ...FONTS.body4 }}>{item.description}</Text>
+            </TouchableOpacity>
+        )
+
+        return (
+            <FlatList
+                ListHeaderComponent={Header}
+                data={features}
+                numColumns={4}
+                columnWrapperStyle={{ justifyContent: 'space-between' }}
+                keyExtractor={item => `${item.id}`}
+                renderItem={renderItem}
+                style={{ marginTop: SIZES.padding * 2 }}
+            />
+        )
+    }
+
+    function renderPromos() {
+
+        const HeaderComponent = () => (
+            <View>
+                {renderHeader()}
+                {renderFeatures()}
+                {renderPromoHeader()}
+            </View>
+        )
+
+        const renderPromoHeader = () => (
+            <View
+                style={{
+                    flexDirection: 'row',
+                    marginBottom: SIZES.padding
+                }}
+            >
+                <View style={{ flex: 1 }}>
+                    <CustomText style={{ ...FONTS.h3 }}>Our Specials</CustomText>
+                </View>
+                <TouchableOpacity
+                    onPress={() => console.log("View All")}
+                >
+                    <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>View All</Text>
+                </TouchableOpacity>
+            </View>
+
+        )
+
+        const renderItem = ({ item }: any) => (
+            <TouchableOpacity
+                style={{
+                    marginVertical: SIZES.base,
+                    width: SIZES.width / 2.5
+                }}
+                onPress={() => console.log(item.title, item.description)}
+            >
+                <View
+                    style={{
+                        height: 30,
+                        borderTopLeftRadius: 20,
+                        borderTopRightRadius: 20,
+                        backgroundColor: Colors.primary
+                    }}
+                >
+                    {/* <Image
+                        source={images.promoBanner}
+                        resizeMode="cover"
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            borderTopLeftRadius: 20,
+                            borderTopRightRadius: 20
+                        }}
+                    /> */}
+                </View> 
+
+                <View
+                    style={{
+                        padding: SIZES.padding,
+                        backgroundColor: COLORS.lightGray,
+                        borderBottomLeftRadius: 20,
+                        borderBottomRightRadius: 20
+                    }}
+                >
+                    <CustomText style={{fontSize: 16, fontWeight:'bold'}}>{item.title}</CustomText>
+                    <CustomText style={{fontSize: 13}}>{item.description}</CustomText>
+                </View>
+            </TouchableOpacity>
+        )
+
+        return (
+            <FlatList
+                ListHeaderComponent={HeaderComponent}
+                contentContainerStyle={{ paddingHorizontal: SIZES.padding * 3 }}
+                numColumns={2}
+                columnWrapperStyle={{ justifyContent: 'space-between' }}
+                data={specialPromos}
+                keyExtractor={item => `${item.id}`}
+                renderItem={renderItem}
+                showsVerticalScrollIndicator={false}
+                ListFooterComponent={
+                    <View style={{ marginBottom: 80 }}>
+                    </View>
+                }
+            />
+        )
+    }
+
     return (
-      <View style={{flex: 1, flexDirection: 'row', marginTop: 10}}>
-        {data.map((d, i) => (
-            <View style={{flex: 0.5}} key={i}>
-              <TouchableOpacity onPress={() => handleSelectView(d)} style={[styles.btn, selectedOption === d.id ? styles.active : styles.inactive ]}>
-                <CustomText style={{color: selectedOption === d.id ? Colors.primary : '#CBCBCB'}}>{d.name}</CustomText>
-              </TouchableOpacity>
-            </View> 
-        ))}
-      </View>
-    );
-  };
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
+            {renderPromos()}
+        </SafeAreaView>
+    )
+}
 
- 
-  return (
-    <ScrollView style={styles.container}>
-      <Countdown targetDate="2024-06-01" />
-      <MeetCouple />
-      <HandleView />
-      <View style={{marginTop: hp(2.5)}}>
-       {selectedOption === 1 ? <Address /> : <Ticket />}
-      </View>
-      {/* <NavButtons /> */}
-    </ScrollView>
-  );
-};
-
-export default DashboardScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: hp(2.5),
-    backgroundColor: '#F7FAFC',
-  },
-  btn:{
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: hp(1.5),
-    paddingHorizontal: hp(1)
-  },
-  active:{
-    borderBottomWidth: 2,
-    borderBottomColor: Colors.primary
-  },
-  inactive:{
-    borderBottomWidth: 1,
-    borderBottomColor: '#CBCBCB'
-  },
-});
+export default Home;

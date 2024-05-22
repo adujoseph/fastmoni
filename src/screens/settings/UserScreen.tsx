@@ -24,9 +24,6 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 const { height } = Dimensions.get('screen');
 
 const UserScreen = () => {
- const{ userDetails : {profile :{name, email, phone, 
-  isCheckedIn}}} = useContext<any>(UserContext);
- 
   const navigation: any = useNavigation();
   const passwordChange = () => { };
 
@@ -43,10 +40,10 @@ const UserScreen = () => {
         style={styles.scrollview}
         contentContainerStyle={styles.content}
       >
-        <CheckSteps step={isCheckedIn ? 2 : 1}/>
-        <ListItem parameter="Name" value={name ?? ''} />
-        <ListItem parameter="Phone Number" value={phone ?? ''} />
-        <ListItem parameter="Email" value={email ?? ''} />
+        
+        <ListItem parameter="Name" value={''} />
+        <ListItem parameter="Phone Number" value={''} />
+        <ListItem parameter="Email" value={''} />
         <PasswordCard onPress={passwordChange} />
         <Pressable onPress={handleLogout} style={styles.logoutBtn}>
           <Text style={styles.logouttext}>Logout</Text>

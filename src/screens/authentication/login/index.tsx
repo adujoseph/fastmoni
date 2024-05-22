@@ -46,8 +46,8 @@ const LoginScreen = ({navigation}: any) => {
   };
 
   const handleLogin = async () => {
-    if (!phonenumber || phonenumber.length > 10) {
-      setErrorMessage('Enter valid phone numer');
+    if (!phonenumber ) {
+      setErrorMessage('Enter valid email');
       return;
     }
     if (!password) {
@@ -55,20 +55,7 @@ const LoginScreen = ({navigation}: any) => {
       return;
     }
     setLoading(true);
-    const payload = {
-      password,
-      phone: `234${phonenumber}`,
-    };
-
-    const response = await signinUser(payload);
-    if (response?.status === 200) {
-      setUserDetails(response.data)
-      navigation.replace(dash);
-      setLoading(false);
-    } else {
-      setErrorMessage(response.message)
-    }
-    if(response?.error) setErrorMessage(response?.error)
+    navigation.replace(dash)
     setLoading(false);
   };
   return (
@@ -79,20 +66,19 @@ const LoginScreen = ({navigation}: any) => {
         }}>
     <View style={styles.container}>
       <View style={{marginTop: 80}}>
-        <CustomText style={styles.login}>Log in to Our Wedding App</CustomText>
-        <CustomText style={styles.continue}>Join our celebration and access exclusive content</CustomText>
+        <CustomText style={styles.login}>Access Fastamoni</CustomText>
       </View>
       <View>
         <CustomTextInput
-          placeholder="Phone number"
+          placeholder="Email address"
+          placeholderTextColor={'lightgray'}
           value={phonenumber}
           onChangeText={setPhonenumber}
-          phone
-          keyboardType="number-pad"
-          maxLength={10}
+          keyboardType="email-address"
         />
         <CustomTextInput
           placeholder="Password"
+          placeholderTextColor={'lightgray'}
           secureTextEntry
           value={password}
           onChangeText={setPassword}

@@ -36,16 +36,7 @@ const RegisterScreen = ({navigation, route}: any) => {
   const [lastname, setLastname] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [availableTables, setAvailableTable] = useState([])
-useEffect(() => {
-  fetchAllTables()
-},[])
 
-const fetchAllTables = async() => {
-  const response = await getTables();
-  if(response?.status === 200){
-    setAvailableTable(response.data)
-  }
-}
 
   const handleSubmit = () => {
     if (!firstname || !lastname) {

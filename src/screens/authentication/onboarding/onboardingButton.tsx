@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
+    
     // bottom: 60,
     // alignSelf: 'center',
     // justifyContent: 'center',

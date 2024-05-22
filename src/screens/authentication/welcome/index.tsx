@@ -27,13 +27,11 @@ const Welcome:React.FC<Props> = ({navigation}) => {
        navigation.navigate(phoneAuth)
     }
   return (
-    <View style={{flex:1, paddingHorizontal: 20}}>
-      <View style={{flex: 0.5, justifyContent: 'center', alignItems: 'center'}}>
-        <Image source={require('../../../assets/images/appIcon.png')} style={{borderRadius: 10}} />
-      </View>
-      <View style={{flex: 0.5}}>
-        <CustomText style={styles.bold}>Welcome to WalkTheIsle!</CustomText>
-        <CustomText style={styles.regular}>Join our celebration and be a part of our special day</CustomText>
+    <View style={{flex:1, paddingHorizontal: 20, justifyContent:'center', alignItems:'center'}}>
+     
+      <View>
+        <CustomText style={styles.bold}>Welcome to Fastamoni!</CustomText>
+        <CustomText style={styles.regular}> Take ownership of your finances in a new way!</CustomText>
         <View>
             <Custombutton title='Register Now' onPress={handleSignup} />
             <Custombutton title="Log In" inverse  onPress={handleSignin}/>

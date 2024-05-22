@@ -11,19 +11,19 @@ import BottomStack from "../BottomTabRoute";
 import Splashscreen from '../../screens/authentication/splashscreen';
 import LoginScreen from '../../screens/authentication/login';
 import PhoneAuthScreen from '../../screens/authentication/phoneAuth';
-import RegisterScreen from '../../screens/authentication/register';
-import SuccessScreen from '../../screens/authentication/success';
+// import RegisterScreen from '../../screens/authentication/register';
+// import SuccessScreen from '../../screens/authentication/success';
 import ForgotPasswordScreen from '../../screens/authentication/forgotPassword';
 import OnboardingScreen from '../../screens/authentication/onboarding/index';
 import WelcomeScreen from '../../screens/authentication/welcome';
 import SetPasswordScreen from '../../screens/authentication/setpassword';
 import ResetPasswordScreen from '../../screens/authentication/resetpassword';
-import OtpScreen from '../../screens/authentication/otp';
-import BankTransferScreen from '../../screens/gifting/screens/BankTransfer';
-import CardTransferScreen from '../../screens/gifting/screens/CardTransfer';
-import MapScreen from '../../screens/dashboard/map/index';
-import CameraShotScreen from '../../screens/cameraShot';
-import CameraScreen from '../../screens/cameraShot/Camera';
+// import OtpScreen from '../../screens/authentication/otp';
+// import BankTransferScreen from '../../screens/gifting/screens/BankTransfer';
+// import CardTransferScreen from '../../screens/gifting/screens/CardTransfer';
+// import MapScreen from '../../screens/dashboard/map/index';
+// import CameraShotScreen from '../../screens/cameraShot';
+// import CameraScreen from '../../screens/cameraShot/Camera';
 
 
 const RootStack = createStackNavigator();
@@ -112,7 +112,7 @@ const RootStackScreen = () => (
                 },
             }}
         />
-        <RootStack.Screen
+        {/* <RootStack.Screen
             name={register}
             component={RegisterScreen}
             options={{
@@ -232,7 +232,7 @@ const RootStackScreen = () => (
                     backgroundColor: '#F6F6F6',
                 },
             }}
-        />
+        /> */}
 {/* 
         <RootStack.Screen
             name={shots}
@@ -248,7 +248,7 @@ const RootStackScreen = () => (
             }}
         /> */}
 
-        <RootStack.Screen
+        {/* <RootStack.Screen
             name={photoview}
             component={CameraScreen}
             options={{
@@ -260,7 +260,7 @@ const RootStackScreen = () => (
                     backgroundColor: '#F6F6F6',
                 },
             }}
-        />
+        /> */}
 
 
 

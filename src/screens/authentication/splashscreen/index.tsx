@@ -1,13 +1,13 @@
-import {StyleSheet, Text, View, Animated, Easing} from 'react-native';
-import React, {useEffect} from 'react';
-import {login, onboarding} from '../../../utils/constants';
-import {Colors} from '../../../utils/themes';
+import { StyleSheet, Text, View, Animated, Easing } from 'react-native';
+import React, { useEffect } from 'react';
+import { login, onboarding } from '../../../utils/constants';
+import { Colors } from '../../../utils/themes';
 
 interface SplashScreenProps {
   navigation: any;
   currentLang: string;
 }
-const Splashscreen: React.FC<SplashScreenProps> = ({navigation}) => {
+const Splashscreen: React.FC<SplashScreenProps> = ({ navigation }) => {
   const fadeAnim = new Animated.Value(0);
 
   useEffect(() => {
@@ -27,14 +27,14 @@ const Splashscreen: React.FC<SplashScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Animated.Image
-        source={require('../../../assets/images/splash1.png')}
-        style={[styles.logo, {opacity: fadeAnim}]}
+        source={require('../../../assets/images/fastLogo.png')}
+        style={[styles.logo, { opacity: fadeAnim }]}
       />
-      <Animated.Text style={[styles.text, {opacity: fadeAnim}]}>
-        Forever Begins Here
+      <Animated.Text style={[styles.text, { opacity: fadeAnim }]}>
+        FastaMoni
       </Animated.Text>
-      <Animated.Text style={[styles.text, {opacity: fadeAnim, fontStyle: 'italic'}]}>
-        #AduraTemi’24
+      <Animated.Text style={[styles.textSmall, { opacity: fadeAnim, fontStyle: 'italic' }]}>
+        Take ownership of your finances in a new way!
       </Animated.Text>
     </View>
   );
@@ -50,15 +50,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 250,
+    height: 250,
     marginBottom: 20,
+    backgroundColor:'white',
+    borderRadius: 20,
     resizeMode: 'contain',
   },
   text: {
     fontSize: 24,
-    color: '#fff',
+    color: Colors.white,
     fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  textSmall: {
+    fontSize: 16,
+    color: Colors.white,
+    fontWeight: '500',
     textAlign: 'center',
   },
 });

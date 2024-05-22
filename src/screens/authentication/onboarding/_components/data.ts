@@ -12,7 +12,7 @@ const data: OnboardingData[] = [
   {
     id: 1,
     image: require('../../../../assets/images/onboard4.png'),
-    text: 'Our Love Story Begins!',
+    text: 'Simplified Banking!',
     textColor: '#f8dac2',
     backgroundColor: '#154f40',
   },
