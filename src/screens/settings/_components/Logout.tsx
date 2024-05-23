@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import CustomText from '../../../components/CustomText'
+import { useNavigation } from '@react-navigation/native'
+import { login, phoneAuth } from '../../../utils/constants'
 
 const Logout = () => {
+ const navigation:any = useNavigation()
   return (
-    <View>
+    <Pressable onPress={() => navigation.navigate(login)}>
       <CustomText style={{color:'red'}}>Logout</CustomText>
-    </View>
+    </Pressable>
   )
 }
 

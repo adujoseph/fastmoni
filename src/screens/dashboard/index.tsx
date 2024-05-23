@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
     SafeAreaView,
     View,
@@ -10,9 +10,13 @@ import {
 import { COLORS, SIZES, FONTS, icons, images } from "../../constants"
 import CustomText from "../../components/CustomText";
 import { Colors } from "../../utils/themes";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialComuunityIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { UserContext } from "../../store/Store";
 
 const Home = () => {
-
+    const { userDetails, setUserDetails } = useContext<any>(UserContext);
+    console.log({userDetails})
     const featuresData = [
         {
             id: 1,
@@ -75,28 +79,32 @@ const Home = () => {
     const specialPromoData = [
         {
             id: 1,
-            img: images.promoBanner,
-            title: "Send Money",
-            description: "Send money to anyone and everyone"
+            name: "Shina Peters",
+            description: "Send money to anyone and everyone",
+            transType: "DB",
+            amount: 2000
         },
         {
             id: 2,
-            img: images.promoBanner,
-            title: "Receive Money",
-            description: "Receive money seamless from any part of the world"
+            name: "Emaka Owor",
+            description: "Salary Advance",
+            transType: "CR",
+            amount: 4000
         },
         {
             id: 3,
-            img: images.promoBanner,
-            title: "Transaction History",
-            description: "See the cash in flow and out flow"
+            name: "Shina Peters",
+            description: "Send money to anyone and everyone",
+            transType: "DB",
+            amount: 2000
         },
         {
             id: 4,
-            img: images.promoBanner,
-            title: "Request Payment",
-            description: "You can request payment via a payment link you generate on the app"
-        },
+            name: "Emaka Owor",
+            description: "Salary Advance",
+            transType: "CR",
+            amount: 3000
+        }
     ]
 
     const [features, setFeatures] = React.useState(featuresData)
@@ -107,6 +115,7 @@ const Home = () => {
             <View style={{ flexDirection: 'row', marginVertical: SIZES.padding * 2 }}>
                 <View style={{ flex: 1 }}>
                     <CustomText>Hello!</CustomText>
+                    <CustomText>{userDetails?.name}</CustomText>
                 </View>
 
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -236,7 +245,7 @@ const Home = () => {
                 }}
             >
                 <View style={{ flex: 1 }}>
-                    <CustomText style={{ ...FONTS.h3 }}>Our Specials</CustomText>
+                    <CustomText style={{ ...FONTS.h3 }}>Recent transaction</CustomText>
                 </View>
                 <TouchableOpacity
                     onPress={() => console.log("View All")}
@@ -250,41 +259,26 @@ const Home = () => {
         const renderItem = ({ item }: any) => (
             <TouchableOpacity
                 style={{
-                    marginVertical: SIZES.base,
-                    width: SIZES.width / 2.5
-                }}
-                onPress={() => console.log(item.title, item.description)}
-            >
-                <View
-                    style={{
-                        height: 30,
-                        borderTopLeftRadius: 20,
-                        borderTopRightRadius: 20,
-                        backgroundColor: Colors.primary
-                    }}
-                >
-                    {/* <Image
-                        source={images.promoBanner}
-                        resizeMode="cover"
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            borderTopLeftRadius: 20,
-                            borderTopRightRadius: 20
-                        }}
-                    /> */}
-                </View> 
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingVertical: 10,
+                    paddingHorizontal: 5
+                }}>
 
-                <View
-                    style={{
-                        padding: SIZES.padding,
-                        backgroundColor: COLORS.lightGray,
-                        borderBottomLeftRadius: 20,
-                        borderBottomRightRadius: 20
-                    }}
-                >
-                    <CustomText style={{fontSize: 16, fontWeight:'bold'}}>{item.title}</CustomText>
-                    <CustomText style={{fontSize: 13}}>{item.description}</CustomText>
+
+                <View style={{flexDirection:'row'}}>
+                    <View style={{paddingRight: 10}}>
+                        <MaterialComuunityIcon name={item.transType === "DB" ?"bank-transfer-out": "bank-transfer-in"} size={25} color={item.transType === "DB" ?'red': 'green'} />
+                    </View>
+                    <View>
+                        <CustomText style={{ fontSize: 16, fontWeight: 'bold' }}>{item.name}</CustomText>
+                        <CustomText style={{ fontSize: 13 }}>{item.description}</CustomText>
+                    </View>
+
+                </View>
+                <View>
+                <CustomText style={{ fontSize: 13 }}>{item.amount}</CustomText>
                 </View>
             </TouchableOpacity>
         )
@@ -293,12 +287,12 @@ const Home = () => {
             <FlatList
                 ListHeaderComponent={HeaderComponent}
                 contentContainerStyle={{ paddingHorizontal: SIZES.padding * 3 }}
-                numColumns={2}
-                columnWrapperStyle={{ justifyContent: 'space-between' }}
+                // columnWrapperStyle={{ justifyContent: 'space-between' }}
                 data={specialPromos}
                 keyExtractor={item => `${item.id}`}
                 renderItem={renderItem}
                 showsVerticalScrollIndicator={false}
+                ItemSeparatorComponent={() => <View style={{}} />}
                 ListFooterComponent={
                     <View style={{ marginBottom: 80 }}>
                     </View>

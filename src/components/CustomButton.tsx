@@ -6,6 +6,7 @@ import {
     Dimensions,
     ActivityIndicator,
     TextStyle,
+    ViewStyle,
   } from 'react-native';
   import React from 'react';
 import { Colors } from '../utils/themes';
@@ -15,16 +16,17 @@ import { Colors } from '../utils/themes';
     disable?: boolean;
     isLoading?: boolean;
     inverse?: boolean;
-    textStyles?: TextStyle
+    textStyles?: TextStyle;
+    buttonStyles?: ViewStyle;
     onPress?: () => void;
   }
   
   const {width, height} = Dimensions.get('screen');
   
-  const Custombutton: React.FC<AuthScreenProps> = ({title, disable, onPress, isLoading, inverse, textStyles}) => {
+  const Custombutton: React.FC<AuthScreenProps> = ({title, disable, onPress, isLoading, inverse, textStyles, buttonStyles}) => {
     return (
       <>
-        <TouchableOpacity style={[styles.container, {backgroundColor: disable ? 'gray': inverse ? 'white':Colors.primary, borderWidth: 1, borderColor: Colors.primary}]} onPress={disable ? () => null : onPress}>
+        <TouchableOpacity style={[styles.container, {backgroundColor: disable ? 'gray': inverse ? 'white':Colors.primary, borderWidth: 1, borderColor: Colors.primary, ...buttonStyles}]} onPress={disable ? () => null : onPress}>
           {isLoading ? <ActivityIndicator animating={true} size='small' color={inverse ? 'green': 'white' }/> :<Text style={[styles.text, {color: inverse ? Colors.primary : 'white' }, {...textStyles}]}>{title}</Text>}
         </TouchableOpacity>
       </>

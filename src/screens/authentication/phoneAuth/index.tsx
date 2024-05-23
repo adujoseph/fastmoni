@@ -1,22 +1,25 @@
 import { StyleSheet, Text, View, TouchableOpacity, Keyboard, Alert, Pressable, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import CustomTextInput from '../../../components/CustomTextInput';
 import Custombutton from '../../../components/CustomButton';
 import { Colors } from '../../../utils/themes';
 import { register, otp, login, dash } from '../../../utils/constants';
 import auth from '@react-native-firebase/auth';
 import { supabase } from '../../../lib/supabase';
-import { request } from '../../../services/makeRequest';
 import { requestOtp } from '../../../services/Otp';
 import CustomText from '../../../components/CustomText';
 import { MotiView } from 'moti';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { UserContext } from '../../../store/Store';
+import { createUser } from '../../../services/Authentication';
 
 const PhoneAuthScreen = ({ navigation }: any) => {
   // const [showOtp, setShowOtp] = useState(false);
+  const { userDetails, setUserDetails } = useContext<any>(UserContext);
   const [phonenumber, setPhonenumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [inviteCode, setInviteCode] = useState('')
   const [loading, SetLoading] = useState(false);
@@ -39,6 +42,11 @@ const PhoneAuthScreen = ({ navigation }: any) => {
 
   const handleUserVerification = async () => {
 
+    if (!name && name.length > 3) {
+      setErrorMessage('Please enter valid phone number');
+      return;
+    }
+
     if (!phonenumber && phonenumber.length > 10) {
       setErrorMessage('Please enter valid phone number');
       return;
@@ -58,9 +66,26 @@ const PhoneAuthScreen = ({ navigation }: any) => {
       return;
     }
     SetLoading(true);
-    navigation.replace(dash)
+    const payload = {
+      email,
+      phonenumber,
+      password,
+      name
+    }
+    const response = await createUser(payload)
+    if(response?.status === 200){
+      updateLocal(payload)
+      navigation.replace(dash)
+    } else {
+      setErrorMessage(response?.data?.error);
+    }
+  
     SetLoading(false);
   };
+
+  const updateLocal = (payload: any) => {
+    setUserDetails(payload) 
+  }
 
   return (
     <MotiView
@@ -77,6 +102,15 @@ const PhoneAuthScreen = ({ navigation }: any) => {
             <CustomText style={styles.text}>
               Please use a valid phone and email address
             </CustomText>
+            <CustomTextInput
+              label="Name in full"
+              placeholder='Johnson Crowfield'
+              placeholderTextColor={'lightgray'}
+              keyboardType="default"
+              onFocus={() => setErrorMessage('')}
+              value={name}
+              onChangeText={(val: string) => setName(val)}
+            />
             <CustomTextInput
               label="Enter Phone Number"
               placeholder='9034883109'
